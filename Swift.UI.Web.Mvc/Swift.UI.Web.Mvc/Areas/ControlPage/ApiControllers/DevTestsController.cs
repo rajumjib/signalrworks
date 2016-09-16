@@ -14,7 +14,6 @@ using LiveStock.Core.Domain.Models;
 using LiveStock.DAL.EntityFramework;
 using LiveStock.Core.Domain.Models.DataTransmissionObject;
 using LiveStock.Core.Domain.Models.CompositObject;
-using LiveStock.DAL.EntityFramework;
 using LiveStock.Core.Repository;
 using LiveStock.DAL.Repository;
 using LiveStock.DAL.Repository.EntityFramework;

@@ -52,7 +52,6 @@
                     devTestService.GetDevTests().$promise
                     .then(function (data) {
                         $scope.devTests = data;
-                        loadBookmarked();
                     });
                     break;
                 case 'devTest.edit':
@@ -270,22 +269,16 @@
                         screenActionId = screenAction.remove;
                         //hub.removeDevTest(devTest.id);
                         var removed = { screenId: $scope.screenId, isActive: false, recordId: devTest.id };
-                        serviceUnitOfWork.MostlyUsed.RemoveUses(removed);
-                        serviceUnitOfWork.Recently.RemoveRecent(removed);
-                        serviceUnitOfWork.Bookmarked.RemoveBookmark(removed);
                         break;
                 }
                 if (screenActionId) {
                     var occurrence = { screenId: $scope.screenId, screenActionId: screenActionId, recordId: devTest.id };
-                    serviceUnitOfWork.EventHistory.SaveEvent(occurrence);
                 }
             }
         }
 
         function visit(id) {
             var visited = { screenId: $scope.screenId, recordId: id };
-            serviceUnitOfWork.MostlyUsed.UpdateUses(visited);
-            serviceUnitOfWork.Recently.SaveRecent(visited);
         }
 
         $scope.getList = function (idList) {
@@ -303,65 +296,16 @@
 
         $scope.getRecentList = function (pageSize, orderby) {
             var recentList = [];
-            var param = { pageSize: pageSize, orderBy: orderby };
-            devTestService.GetPagedDevTests(param).$promise
-                .then(function (data) {
-                    angular.forEach(data, function (value, key) {
-                        var recentItem = initUnitOfWork.RecentItem ? initUnitOfWork.RecentItem.init() : {};
-                        recentItem.recordId = value.id;
-                        recentItem.caption = value.campaignName || value.id;
-                        recentList.push(recentItem);
-                    });
-                });
             return recentList;
         };
 
         $scope.toggleBookmark = function (devTest, $index) {
             var isMarked = devTest.isMarked;
             devTest.isMarked = !isMarked;
-            var promise;
-            var bookmark = { screenId: $scope.screenId, recordId: devTest.id };
-            if (devTest.bookmarkedItem) {
-                bookmark = devTest.bookmarkedItem;
-                bookmark.isActive = devTest.isMarked;
-            }
-            if (devTest.isMarked) {
-                promise = serviceUnitOfWork.Bookmarked.SaveBookmark(bookmark).$promise;
-            } else {
-                promise = serviceUnitOfWork.Bookmarked.RemoveBookmark(bookmark).$promise;
-            }
-            promise.then(function (data) {
-                if (data && devTest.isMarked)
-                    devTest.bookmarkedItem = data;
-                else
-                    delete devTest.bookmarkedItem;
-            }).catch(function () {
-                devTest.isMarked = isMarked;
-            });
+            
         };
 
-        function loadBookmarked() {
-            var pageSize = $scope.devTests.length;
-            if (!pageSize)
-                return;
-            serviceUnitOfWork.Bookmarked.GetBookmarkedItems($scope.screenId, pageSize).$promise
-            .then(function (data) {
-                if (!data.length)
-                    return;
-                angular.forEach($scope.devTests, function (value, key) {
-                    var bookmarkedItems = $filter('filter')(data, { recordId: value.id });
-                    var bookmarkedItem;
-                    if (bookmarkedItems.length) {
-                        bookmarkedItem = bookmarkedItems[0];
-                    }
-                    if (bookmarkedItem && value.id == bookmarkedItem.recordId) {
-                        $scope.devTests[key].isMarked = bookmarkedItem.isActive;
-                        $scope.devTests[key].bookmarkedItem = bookmarkedItem;
-                    }
-                });
-
-            });
-        }
+        
         $scope.upward = function (devTest, $index) {
             var arrange = devTest.arrange;
             devTest.arrange = arrange + 1;

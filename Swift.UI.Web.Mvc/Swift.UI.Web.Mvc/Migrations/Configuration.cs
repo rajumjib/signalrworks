@@ -11,7 +11,7 @@ namespace Swift.UI.Web.Mvc.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(LiveStock.DAL.EntityFramework.SystemManagementContext context)
