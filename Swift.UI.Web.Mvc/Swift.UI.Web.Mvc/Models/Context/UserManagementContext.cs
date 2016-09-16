@@ -19,7 +19,7 @@ namespace LiveStock.DAL.EntityFramework
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
 
         public UserManagementContext()
-            : base("name=LiveStockConnection")
+            : base("name=DefaultConnection")
         {
         }
 
@@ -28,11 +28,6 @@ namespace LiveStock.DAL.EntityFramework
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
-            var schemaName = "lsdataapp";
-            //var schemaName = "lsdatatest";
-
-            modelBuilder.HasDefaultSchema(schemaName);
 
             modelBuilder.Entity<UserData>().ToTable("UsersData");
 

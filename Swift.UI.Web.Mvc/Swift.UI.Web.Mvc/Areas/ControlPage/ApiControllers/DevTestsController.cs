@@ -23,7 +23,7 @@ using LiveStock.Logic.Service;
 using LiveStock.Logic.Service.EntityFramework;
 //using LiveStock.UI.Web.Mvc.ApiControllers;
 
-namespace Swift.UI.Web.Mvc.Areas.ControlPage.ApiControllers
+namespace LiveStock.UI.Web.Mvc.Areas.ControlPage.ApiControllers
 {
 
     //[Authorize]
@@ -78,7 +78,7 @@ namespace Swift.UI.Web.Mvc.Areas.ControlPage.ApiControllers
                 return BadRequest();
             }
 
-            devTest.UserDataId = users.Get(User.Identity.Name).UserDataId;
+            devTest.UserDataId = users.Get("rajumjib@aol.com").UserDataId;
 
             try
             {
@@ -114,7 +114,7 @@ namespace Swift.UI.Web.Mvc.Areas.ControlPage.ApiControllers
                 return BadRequest();
             }
 
-            devTest.UserDataId = users.Get(User.Identity.Name).UserDataId;
+            devTest.UserDataId = users.Get("rajumjib@aol.com").UserDataId;
 
             try
             {
@@ -144,7 +144,7 @@ namespace Swift.UI.Web.Mvc.Areas.ControlPage.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            devTest.UserDataId = users.Get(User.Identity.Name).UserDataId;
+            devTest.UserDataId = users.Get("rajumjib@aol.com").UserDataId;
             devTest.EntryDate = DateTime.Today;
             await service.DevTest.SaveAsync(devTest);
 
