@@ -106,26 +106,7 @@
 
     </div>
     <div class="col-md-3">
-        <div class="list-group"
-             ng-controller="RecentlyAddedController as rac">
-            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-inbox"></span> Recently Added</a>
-            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
-               ng-repeat="item in rac.RecentlyAddedList">{{item.caption}}</a>
-        </div>
-        <div class="list-group"
-             ng-controller="BookmarkedController as bmc">
-            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-bookmark"></span> Bookmarked</a>
-            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
-               ng-repeat="item in bmc.BookmarkedList">{{item.caption}}</a>
-        </div>
-        <div class="list-group"
-             ng-controller="MostlyUsedController as muc">
-            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-star"></span> Mostly Used</a>
-            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
-               ng-repeat="item in muc.MostlyUsedList">
-                {{item.caption}}
-                <span class="badge">{{item.visits}}</span></a>
-        </div>
+        
     </div>
 
 </div>

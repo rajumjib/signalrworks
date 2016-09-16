@@ -42,7 +42,7 @@
                         <div class="col-md-10 ">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                @Html.TextBoxFor(model => model.Date, new { @class = "col-md-7 form-control datepicker", data_ng_model = "devTest.date", data_uib_datepicker_popup = "MM/dd/yyyy", data_is_open = "datepicker.date", data_ng_focus = "datepicker.date=true;" })
+                                @Html.TextBoxFor(model => model.Date, new { @class = "col-md-7 form-control datepicker", data_ng_model = "devTest.date", data_uib_datepicker_popup = "MM/dd/yyyy", data_is_open = "datepicker.dateStart", data_ng_focus = "datepicker.dateStart=true;" })
                             </div>
                         </div>
                     </div>
@@ -116,31 +116,7 @@
 
     </div>
     <div class="col-md-3">
-        <div class="list-group"
-             ng-controller="MoveNextController as mnc">
-            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-road"></span> Move Next</a>
-            <a href="{{item.url}}/{{devTest.id}}" class="list-group-item"
-               ng-repeat="item in mnc.MoveNextList">
-                {{item.title}}
-                <span class="glyphicon glyphicon-arrow-right pull-right"></span>
-            </a>
-        </div>
-
-        <div class="list-group"
-             ng-controller="BookmarkedController as bmc">
-            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-bookmark"></span> Bookmarked</a>
-            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
-               ng-repeat="item in bmc.BookmarkedList">{{item.caption}}</a>
-        </div>
-        <div class="list-group"
-             ng-controller="MostlyUsedController as muc">
-            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-star"></span> Mostly Used</a>
-            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
-               ng-repeat="item in muc.MostlyUsedList">
-                {{item.caption}}
-                <span class="badge">{{item.visits}}</span>
-            </a>
-        </div>
+        
     </div>
 
 </div>
