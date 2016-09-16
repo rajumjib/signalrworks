@@ -183,19 +183,55 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\ControlPage\ApiControllers\DevTestsController.cs" />
+    <Compile Include="Areas\ControlPage\Controllers\DevTestController.cs" />
     <Compile Include="Areas\ControlPage\ControlPageAreaRegistration.cs" />
+    <Compile Include="Areas\ControlPage\MessageServers\Decorator\Repositories\AsyncRepositoryDecorator.cs" />
+    <Compile Include="Areas\ControlPage\MessageServers\Decorator\Repositories\DevTestRepository.cs" />
+    <Compile Include="Areas\ControlPage\MessageServers\SignalR\DevTest.cs" />
+    <Compile Include="Areas\ControlPage\Models\COs\DevTestCO.cs" />
+    <Compile Include="Areas\ControlPage\Models\DevTest.cs" />
+    <Compile Include="Areas\ControlPage\Models\DTOs\DevTestDTO.cs" />
+    <Compile Include="Areas\ControlPage\Models\ViewModels\DevTestVM.cs" />
+    <Compile Include="Areas\ControlPage\Repositories\DevTestRepository.cs" />
+    <Compile Include="Areas\ControlPage\Repositories\Interfaces\IDevTestRepository.cs" />
+    <Compile Include="Areas\ControlPage\Repositories\UnitOfWorks\DevTest.cs" />
+    <Compile Include="Areas\ControlPage\Services\DevTestService.cs" />
+    <Compile Include="Areas\ControlPage\Services\Interfaces\IDevTestService.cs" />
+    <Compile Include="Areas\ControlPage\Services\UnitOfWorks\DevTest.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MeController.cs" />
+    <Compile Include="Core\Models\SelectiveIDs.cs" />
+    <Compile Include="Core\Repository\IAsyncRepository.cs" />
+    <Compile Include="Core\Repository\UnitOfWorkRepository.cs" />
+    <Compile Include="Core\Service\IAsyncService.cs" />
+    <Compile Include="Core\Service\UnitOfWorkService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Context\SystemManagementContext.cs" />
+    <Compile Include="Models\Context\UserManagementContext.cs" />
+    <Compile Include="Models\COs\UserDataCO.cs" />
+    <Compile Include="Models\DTOs\UserDataDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Core\Models\UserData.cs" />
+    <Compile Include="Models\ViewModels\UserDataVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repository\Interfaces\IUserDataRepository.cs" />
+    <Compile Include="Repository\IUnitOfWorkRepository.cs" />
+    <Compile Include="Repository\UnitOfWorks\UserData.cs" />
+    <Compile Include="Repository\UserDataRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Server\DataUpdateHub.cs" />
+    <Compile Include="Service\Interfaces\IUserDataService.cs" />
+    <Compile Include="Service\IUnitOfWorkService.cs" />
+    <Compile Include="Service\UnitOfWorks\UserData.cs" />
+    <Compile Include="Service\UserDataService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -985,6 +1021,11 @@
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Areas\ControlPage\Views\web.config" />
+    <Content Include="Areas\ControlPage\Views\DevTest\Create.cshtml" />
+    <Content Include="Areas\ControlPage\Views\DevTest\Delete.cshtml" />
+    <Content Include="Areas\ControlPage\Views\DevTest\Details.cshtml" />
+    <Content Include="Areas\ControlPage\Views\DevTest\Edit.cshtml" />
+    <Content Include="Areas\ControlPage\Views\DevTest\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1034,9 +1075,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ApiControllers\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ControlPage\Controllers\" />
-    <Folder Include="Areas\ControlPage\Models\" />
+    <Folder Include="Areas\ControlPage\MessageServers\Decorator\Services\" />
+    <Folder Include="Areas\ControlPage\Scripts\" />
     <Folder Include="Areas\ControlPage\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

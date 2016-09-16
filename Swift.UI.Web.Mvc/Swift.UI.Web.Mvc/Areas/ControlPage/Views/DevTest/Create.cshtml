@@ -1,0 +1,136 @@
+﻿@model LiveStock.Core.Domain.Models.DevTest
+@{
+    ViewBag.Title = "Create DevTest";
+}
+
+<div class="row">
+    <div class="col-md-9">
+@using (Html.BeginForm("Create", "DevTest", FormMethod.Post, new { @class = "form form-horizontal", role = "form", name="devTestForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+		<fieldset>
+		<div class="form-group alert-danger"
+            ng-show="validationErrors.length || errorMessage">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <ul>
+                    <li class="text-danger"
+                        ng-show="errorMessage">{{errorMessage}}</li>
+                    <li class="text-danger"
+                        ng-repeat="error in validationErrors">{{error}}</li>
+                </ul>
+            </div>
+        </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">DevTest Information</div>
+                        <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.CampaignName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 " >
+				@Html.TextBoxFor(model => model.CampaignName, new { @class = "col-md-7 form-control", data_ng_model="devTest.campaignName" })
+				@Html.ValidationMessageFor(model => model.CampaignName, null, new { @class = "col-md-5 help-inline" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 " >
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    @Html.TextBoxFor(model => model.Date, new { @class = "col-md-7 form-control datepicker", data_ng_model="devTest.date", data_uib_datepicker_popup = "MM/dd/yyyy", data_is_open = "datepicker.date", data_ng_focus = "datepicker.date=true;" })
+                </div>
+				@Html.ValidationMessageFor(model => model.Date, null, new { @class = "col-md-5 help-inline" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Clicks, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 " >
+				@Html.TextBoxFor(model => model.Clicks, new { @class = "col-md-7 form-control", data_ng_model="devTest.clicks" })
+				@Html.ValidationMessageFor(model => model.Clicks, null, new { @class = "col-md-5 help-inline" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Conversions, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 " >
+				@Html.TextBoxFor(model => model.Conversions, new { @class = "col-md-7 form-control", data_ng_model="devTest.conversions" })
+				@Html.ValidationMessageFor(model => model.Conversions, null, new { @class = "col-md-5 help-inline" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Impressions, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 " >
+				@Html.TextBoxFor(model => model.Impressions, new { @class = "col-md-7 form-control", data_ng_model="devTest.impressions" })
+				@Html.ValidationMessageFor(model => model.Impressions, null, new { @class = "col-md-5 help-inline" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AffiliateName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 " >
+				@Html.TextBoxFor(model => model.AffiliateName, new { @class = "col-md-7 form-control", data_ng_model="devTest.affiliateName" })
+				@Html.ValidationMessageFor(model => model.AffiliateName, null, new { @class = "col-md-5 help-inline" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Arrange, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 " >
+				@Html.TextBoxFor(model => model.Arrange, new { @class = "col-md-7 form-control", data_ng_model="devTest.arrange" })
+				@Html.ValidationMessageFor(model => model.Arrange, null, new { @class = "col-md-5 help-inline" })
+            </div>
+        </div>
+                        </div>
+                    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" value="Reset" class="btn btn-default"
+                    data-ng-click="resetDevTest()">Reset</button>
+                <button type="button" class="btn btn-default"
+                        data-ng-click="validateDevTest(devTestForm)">
+                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"
+                            ng-show="!devTestForm.$invalid"></span>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"
+                            ng-show="devTestForm.$invalid"></span>
+                </button>
+                <button type="button" value="Create" class="btn btn-primary"
+                    data-ng-disabled="devTestForm.$invalid || viewPage.isSaving" data-ng-click="addDevTest(devTest)">Save</button>
+                <a class="btn btn-default" href="#/devTest/list"
+                    ui-sref="devTest.list">Cancel</a>
+            </div>
+        </div>
+
+        </fieldset>
+    </div>
+}
+
+    </div>
+    <div class="col-md-3">
+        <div class="list-group"
+             ng-controller="RecentlyAddedController as rac">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-inbox"></span> Recently Added</a>
+            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
+               ng-repeat="item in rac.RecentlyAddedList">{{item.caption}}</a>
+        </div>
+        <div class="list-group"
+             ng-controller="BookmarkedController as bmc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-bookmark"></span> Bookmarked</a>
+            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
+               ng-repeat="item in bmc.BookmarkedList">{{item.caption}}</a>
+        </div>
+        <div class="list-group"
+             ng-controller="MostlyUsedController as muc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-star"></span> Mostly Used</a>
+            <a href="@Url.Action("Index")#/devTest/edit/{{item.recordId}}" class="list-group-item"
+               ng-repeat="item in muc.MostlyUsedList">
+                {{item.caption}}
+                <span class="badge">{{item.visits}}</span></a>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

@@ -1,0 +1,139 @@
+﻿@model LiveStock.Core.Domain.Models.DevTest
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="row">
+
+            <fieldset>
+                <legend>
+                    DevTest <sup class="badge" style="font-size:x-small"
+                                 ng-show="dataChanged">{{dataChanged}}</sup>
+                </legend>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.CampaignName)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.campaignName}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Date)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.date | date : config.dateFormat}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Clicks)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.clicks | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Conversions)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.conversions | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Impressions)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.impressions | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.AffiliateName)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.affiliateName}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Arrange)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.arrange | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.EntryDate)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.entryDate | date : config.dateFormat}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="button" class="btn btn-default"
+                                data-ng-click="toggleBookmark(devTest)">
+                            <span class="glyphicon"
+                                  ng-class="{'glyphicon-star':devTest.isMarked, 'glyphicon-star-empty':!devTest.isMarked}"></span>
+                        </button>
+                        <a href="#/devTest/edit/{{devTest.id}}" class="btn btn-mini btn-primary"
+                           ui-sref="devTest.edit({Id:devTest.id})">Edit</a>
+                        <a href="#/devTest/delete/{{devTest.id}}" class="btn btn-mini btn-danger"
+                           ui-sref="devTest.delete({Id:devTest.id})">Delete</a>
+                        <a class="btn btn-mini btn-info" href="#/devTest/list"
+                           ui-sref="devTest.list">List</a>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="list-group"
+             ng-controller="MoveNextController as mnc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-road"></span> Move Next</a>
+            <a href="{{item.url}}/{{devTest.id}}" class="list-group-item"
+               ng-repeat="item in mnc.MoveNextList">
+                {{item.title}}
+                <span class="glyphicon glyphicon-arrow-right pull-right"></span>
+            </a>
+        </div>
+
+        <div class="list-group"
+             ng-controller="BookmarkedController as bmc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-bookmark"></span> Bookmarked</a>
+            <a href="@Url.Action("Index")#/devTest/detail/{{item.recordId}}" class="list-group-item"
+               ng-repeat="item in bmc.BookmarkedList">{{item.caption}}</a>
+        </div>
+        <div class="list-group"
+             ng-controller="MostlyUsedController as muc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-star"></span> Mostly Used</a>
+            <a href="@Url.Action("Index")#/devTest/detail/{{item.recordId}}" class="list-group-item"
+               ng-repeat="item in muc.MostlyUsedList">
+                {{item.caption}}
+                <span class="badge">{{item.visits}}</span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

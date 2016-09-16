@@ -1,0 +1,138 @@
+﻿@model LiveStock.Core.Domain.Models.DevTest
+@{
+    ViewBag.Title = "Delete DevTest";
+}
+<div class="row">
+    <div class="col-md-9">
+        <div class="row">
+
+            <fieldset>
+                <legend>
+                    Are you sure you want to delete this DevTest?
+                    <sup class="badge" style="font-size:x-small"
+                         ng-show="dataChanged">{{dataChanged}}</sup>
+                </legend>
+
+                <div class="form-group alert-danger"
+                     ng-show="errorMessage">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        <ul>
+                            <li class="text-danger"
+                                ng-show="errorMessage">{{errorMessage}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.CampaignName)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.campaignName}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Date)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.date | date : config.dateFormat}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Clicks)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.clicks | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Conversions)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.conversions | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Impressions)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.impressions | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.AffiliateName)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.affiliateName}}
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">
+                        @Html.DisplayNameFor(model => model.Arrange)
+                    </div>
+                    <div class="col-md-9">
+                        {{devTest.arrange | number : 0}}
+                        &nbsp;
+                    </div>
+                </div>
+            </fieldset>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="button" value="Delete" class="btn btn-danger"
+                                title="Delete {{devTest.campaignName}}" message="Do you want to remove this item? {{messageConfirm}}"
+                                modal-id="{{devTest.Id}}" on-approve="removeDevTest(devTest);"
+                                on-deny="closeConfirm();" ang-confirm-modal>
+                            Delete
+                        </button>
+                        <a class="btn btn-default" href="#/devTest/list"
+                           ui-sref="devTest.list">Cancel</a>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="list-group"
+             ng-controller="MoveNextController as mnc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-road"></span> Move Next</a>
+            <a href="{{item.url}}/{{devTest.id}}" class="list-group-item"
+               ng-repeat="item in mnc.MoveNextList">
+                {{item.title}}
+                <span class="glyphicon glyphicon-arrow-right pull-right"></span>
+            </a>
+        </div>
+
+        <div class="list-group"
+             ng-controller="BookmarkedController as bmc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-bookmark"></span> Bookmarked</a>
+            <a href="@Url.Action("Index")#/devTest/delete/{{item.recordId}}" class="list-group-item"
+               ng-repeat="item in bmc.BookmarkedList">{{item.caption}}</a>
+        </div>
+        <div class="list-group"
+             ng-controller="MostlyUsedController as muc">
+            <a class="list-group-item list-group-item-info disabled"><span class="glyphicon glyphicon-star"></span> Mostly Used</a>
+            <a href="@Url.Action("Index")#/devTest/delete/{{item.recordId}}" class="list-group-item"
+               ng-repeat="item in muc.MostlyUsedList">{{item.caption}}<span class="badge">{{item.visits}}</span></a>
+        </div>
+    </div>
+
+</div>

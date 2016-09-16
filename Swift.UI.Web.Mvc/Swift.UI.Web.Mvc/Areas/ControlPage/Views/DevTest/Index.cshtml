@@ -1,0 +1,534 @@
+@model IEnumerable<LiveStock.Core.Domain.Models.DevTest>
+@{
+    ViewBag.Title = "Index of DevTest";
+}
+<div class="row">
+    <div class="col-lg-12 alert-info">
+        <h3> <span class="glyphicon glyphicon-briefcase"></span> DevTest Information </h3>
+    </div>
+</div>
+<div id="viewList" style="display:none">
+    <div class="panel panel-primary">
+		<div class="panel-heading">
+            <div class="panel-title">
+                DevTest List
+                <div class="btn-group btn-group-sm pull-right"
+                     uib-dropdown>
+                    <div class="btn btn-info"
+                         data-ng-click="showFilter=!showFilter">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </div>
+                    <a class="btn btn-success" href="#/devTest/add"
+                       ui-sref="devTest.add">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                    <button type="button" class="btn btn-default"
+                            uib-dropdown-toggle>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#"
+                               ng-click="showBookmark=!showBookmark">
+                                <span class="glyphicon glyphicon-star"></span> Bookmark <span class="glyphicon glyphicon-ok pull-right" ng-show="showBookmark"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               ng-click="showUp=!showUp">
+                                <span class="glyphicon glyphicon-chevron-up"></span> Up <span class="glyphicon glyphicon-ok pull-right" ng-show="showUp"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               ng-click="showDown=!showDown">
+                                <span class="glyphicon glyphicon-chevron-down"></span> Down <span class="glyphicon glyphicon-ok pull-right" ng-show="showDown"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               ng-click="showVisible=!showVisible">
+                                <span class="glyphicon glyphicon-ok-circle"></span> Show <span class="glyphicon glyphicon-ok pull-right" ng-show="showVisible"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               ng-click="showActive=!showActive">
+                                <span class="glyphicon glyphicon-check"></span> Activate <span class="glyphicon glyphicon-ok pull-right" ng-show="showActive"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               ng-click="showEdit=!showEdit">
+                                <span class="glyphicon glyphicon-edit"></span> Edit <span class="glyphicon glyphicon-ok pull-right" ng-show="showEdit"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               ng-click="showDetail=!showDetail">
+                                <span class="glyphicon glyphicon-file"></span> Details <span class="glyphicon glyphicon-ok pull-right" ng-show="showDetail"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               ng-click="showDelete=!showDelete">
+                                <span class="glyphicon glyphicon-remove"></span> Delete <span class="glyphicon glyphicon-ok pull-right" ng-show="showDelete"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+		<div class="panel-body">
+<div class="row" style="max-height: 500px; min-height:300px; overflow-y: auto">
+    <table class="table table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <th class="hidden-xs hidden-sm hidden-md"
+                    ng-click="listOrderBy('userData.userName')">
+                    @Html.DisplayNameFor(model => model.UserData.UserName)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'userData.userName'"></span>
+                </th>
+                <th
+                    ng-click="listOrderBy('campaignName')">
+                    @Html.DisplayNameFor(model => model.CampaignName)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'campaignName'"></span>
+                </th>
+                <th
+                    ng-click="listOrderBy('date')">
+                    @Html.DisplayNameFor(model => model.Date)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'date'"></span>
+                </th>
+                <th
+                    ng-click="listOrderBy('clicks')">
+                    @Html.DisplayNameFor(model => model.Clicks)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'clicks'"></span>
+                </th>
+                <th
+                    ng-click="listOrderBy('conversions')">
+                    @Html.DisplayNameFor(model => model.Conversions)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'conversions'"></span>
+                </th>
+                <th
+                    ng-click="listOrderBy('impressions')">
+                    @Html.DisplayNameFor(model => model.Impressions)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'impressions'"></span>
+                </th>
+                <th
+                    ng-click="listOrderBy('affiliateName')">
+                    @Html.DisplayNameFor(model => model.AffiliateName)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'affiliateName'"></span>
+                </th>
+                <th
+                    ng-click="listOrderBy('arrange')">
+                    @Html.DisplayNameFor(model => model.Arrange)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'arrange'"></span>
+                </th>
+                <th class="hidden-xs hidden-sm hidden-md"
+                    ng-click="listOrderBy('entryDate')">
+                    @Html.DisplayNameFor(model => model.EntryDate)
+                    <span class="glyphicon "
+                            ng-class="{'glyphicon-arrow-up':reverse, 'glyphicon-arrow-down':!reverse}" ng-show="predicate === 'entryDate'"></span>
+                </th>
+                <th class="list-buttons"></th>
+            </tr>
+            <tr class="filters"
+                data-ng-show="showFilter">
+                <th class="hidden-xs hidden-sm hidden-md">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.userData.userName">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.userData.userName, 'glyphicon-remove':devTestFilter.userData.userName}" ng-click="devTestFilter.userData.userName=''"></span></span>
+                    </div>
+                </th>
+                <th>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.campaignName">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.campaignName, 'glyphicon-remove':devTestFilter.campaignName}" ng-click="devTestFilter.campaignName=''"></span></span>
+                    </div>
+                </th>
+                <th>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.date">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.date, 'glyphicon-remove':devTestFilter.date}" ng-click="devTestFilter.date=''"></span></span>
+                    </div>
+                </th>
+                <th>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.clicks">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.clicks, 'glyphicon-remove':devTestFilter.clicks}" ng-click="devTestFilter.clicks=''"></span></span>
+                    </div>
+                </th>
+                <th>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.conversions">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.conversions, 'glyphicon-remove':devTestFilter.conversions}" ng-click="devTestFilter.conversions=''"></span></span>
+                    </div>
+                </th>
+                <th>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.impressions">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.impressions, 'glyphicon-remove':devTestFilter.impressions}" ng-click="devTestFilter.impressions=''"></span></span>
+                    </div>
+                </th>
+                <th>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.affiliateName">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.affiliateName, 'glyphicon-remove':devTestFilter.affiliateName}" ng-click="devTestFilter.affiliateName=''"></span></span>
+                    </div>
+                </th>
+                <th>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.arrange">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.arrange, 'glyphicon-remove':devTestFilter.arrange}" ng-click="devTestFilter.arrange=''"></span></span>
+                    </div>
+                </th>
+                <th class="hidden-xs hidden-sm hidden-md">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                            data-ng-model="devTestFilter.entryDate">
+                        <span class="input-group-addon"><span class="glyphicon "
+                            ng-class="{'glyphicon-filter':!devTestFilter.entryDate, 'glyphicon-remove':devTestFilter.entryDate}" ng-click="devTestFilter.entryDate=''"></span></span>
+                    </div>
+                </th>
+                <th style="min-width: 160px"></th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr data-ng-repeat="item in devTests | filter: devTestFilter | orderBy:predicate:reverse">
+                    <td class="hidden-xs hidden-sm hidden-md">
+                        {{item.userData.userName}}
+                    </td>
+                    <td>
+                        {{item.campaignName}}
+                    </td>
+                    <td>
+                        {{item.date | date : config.dateFormat}}
+                    </td>
+                    <td>
+                        {{item.clicks | number : 0}}
+                    </td>
+                    <td>
+                        {{item.conversions | number : 0}}
+                    </td>
+                    <td>
+                        {{item.impressions | number : 0}}
+                    </td>
+                    <td>
+                        {{item.affiliateName}}
+                    </td>
+                    <td>
+                        {{item.arrange | number : 0}}
+                    </td>
+                    <td class="hidden-xs hidden-sm hidden-md">
+                        {{item.entryDate | date : config.dateFormat}}
+                    </td>
+                    <td>
+                        <div class="btn-group btn-group-sm pull-right"
+                            uib-dropdown>
+                            <button type="button" class="btn btn-sm btn-default"
+                                    ng-click="toggleBookmark(item,$index)" ng-show="showBookmark">
+                                <span class="glyphicon"
+                                        ng-class="{'glyphicon-star':item.isMarked, 'glyphicon-star-empty':!item.isMarked}"></span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-default"
+                                    ng-click="upward(item,$index)" ng-disabled="item.arrange >= sMSTemplates.length || predicate != 'arrange'" ng-show="showUp">
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-default"
+                                    ng-click="downward(item,$index)" ng-disabled="item.arrange <= 0 || predicate != 'arrange'" ng-show="showDown">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-default"
+                                    ng-click="toggleVisibility(item,$index)" ng-show="showVisible">
+                                <span class="glyphicon"
+                                        ng-class="{'glyphicon-ok-circle':item.arrange, 'glyphicon-ban-circle':!item.arrange}"></span>
+                            </button>
+                            <a href="#/devTest/edit/{{item.id}}" class = "btn btn-sm btn-primary"
+                                ui-sref="devTest.edit({Id:item.id})" ng-show="showEdit">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <a href="#/devTest/detail/{{item.id}}" class = "btn btn-sm btn-info"
+                                ui-sref="devTest.detail({Id:item.id})" ng-show="showDetail">
+                                <span class="glyphicon glyphicon-file"></span>
+                            </a>
+                            <a href="#/devTest/delete/{{item.id}}" class = "btn btn-sm btn-danger"
+                                ui-sref="devTest.delete({Id:item.id})"  ng-show="showDelete">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                            <button type="button" class="btn btn-default"
+                                    uib-dropdown-toggle>
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-hide="item.arrange >= sMSTemplates.length || predicate != 'arrange'">
+                                    <a href="#"
+                                        ng-click="upward(item,$index)">Up</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        ng-click="toggleVisibility(item,$index)">{{item.arrange | makeshowhide }}</a>
+                                </li>
+                                <li>
+                                    <a href="#/devTest/edit/{{item.id}}"
+                                        ui-sref="devTest.edit({Id:item.id})">Edit</a>
+                                </li>
+                                <li>
+                                    <a href="#/devTest/detail/{{item.id}}"
+                                        ui-sref="devTest.detail({Id:item.id})">Details</a>
+                                </li>
+                                <li>
+                                    <a href="#/devTest/delete/{{item.id}}"
+                                        ui-sref="devTest.delete({Id:item.id})">Delete</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        ng-click="toggleBookmark(item,$index)">
+                                        <span ng-hide="item.isMarked">Bookmark</span>
+                                        <span ng-show="item.isMarked">Unbookmark</span>
+                                    </a>
+                                </li>
+                                <li ng-hide="item.arrange <= 0 || predicate != 'arrange'">
+                                    <a href="#"
+                                        ng-click="downward(item,$index)">Down</a>
+                                </li>
+            
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+            @if (Model != null) {
+            foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CampaignName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Clicks)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Conversions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Impressions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AffiliateName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Arrange)
+                    </td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-mini btn-primary" })
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-mini btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-mini" })
+                        </div>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="10">Total: @Model.Count() DevTests
+                </td>
+            </tr>
+            }
+            <tr>
+                <td colspan="10">
+                    <div class="alert-danger"
+                         data-ng-show="devTests.length == 0">There are no devTests</div>
+                    <div class="alert-info"
+                         data-ng-show="devTests.length > 0">Total: {{devTests.length}} DevTests</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+		</div>
+    </div>
+    <div>
+        <a class="btn btn-default" href="#/devTest/add"
+            ui-sref="devTest.add">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span class="hidden-xs disply-normal">Add New</span>
+        </a>
+    </div>
+</div>
+<div id="notFound" style="display:none">
+        <div class="row">
+
+            <fieldset>
+                <legend>DevTest information not found</legend>
+
+                <div class="form-group alert-danger"
+                     ng-show="errorMessage">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        <ul>
+                            <li class="text-danger"
+                                ng-show="errorMessage">{{errorMessage}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-6 ">
+                        <p>
+                            Possible cause
+                        </p>
+                        <ul>
+                            <li class="text-danger">DevTest data may be deleted</li>
+                            <li class="text-danger">Invalid link or url</li>
+                            <li class="text-danger">Invalid bookmark or recent items</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 ">
+                        <p>
+                            Possible solution
+                        </p>
+                        <ul>
+                            <li class="text-danger">
+                                Check devTest data from the
+                                <a href="#/devTest/list" ui-sref="devTest.list">devTest list</a>
+                            </li>
+                            <li class="text-danger">
+                                Check devTest data from the
+                                <a href="#/devTest/report" ui-sref="devTest.report">report</a>
+                            </li>
+                            <li class="text-danger">Check the link or url</li>
+                            <li class="text-danger">Clean bookmarks or recent items</li>
+                            <li class="text-danger">Refresh browser</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <a class="btn btn-default" href="#/devTest/list"
+                           ui-sref="devTest.list">Back to List</a>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+</div>
+<div id="noLongerExist" style="display:none">
+    <div class="row">
+
+        <fieldset>
+            <legend>DevTest information no longer available</legend>
+
+            <div class="form-group alert-danger"
+                 ng-show="errorMessage">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-10">
+                    <ul>
+                        <li class="text-danger"
+                            ng-show="errorMessage">{{errorMessage}}</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-6 ">
+                    <p>
+                        Possible cause
+                    </p>
+                    <ul>
+                        <li class="text-danger">DevTest data has been deleted</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 ">
+                    <p>
+                        Possible solution
+                    </p>
+                    <ul>
+                        <li class="text-danger">
+                            Check devTest data from the
+                            <a href="#/devTest/list" ui-sref="devTest.list">devTest list</a>
+                        </li>
+                        <li class="text-danger">
+                            Check devTest data from the
+                            <a href="#/devTest/report" ui-sref="devTest.report">report</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <a class="btn btn-default" href="#/devTest/list"
+                       ui-sref="devTest.list">Back to List</a>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        devTestRoute = {
+            Create: '@Url.Action("Create")',
+            Edit: '@Url.Action("Edit")',
+            Details: '@Url.Action("Details")',
+            Delete: '@Url.Action("Delete")',
+        };
+    </script>
+    <script src="~/Areas/ControlPage/Apps/Components/Pages/Languages/devTestMsg.js"></script>
+    <script src="~/Areas/ControlPage/Apps/Components/Pages/Routes/devTestRoute.js"></script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+@section Styles {
+    <style>
+    </style>
+}
+
+
+
+
+
+
+
