@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swift.UI.Web.Mvc", "Swift.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swift.UI.Web.Mvc.Tests", "Swift.UI.Web.Mvc.Tests\Swift.UI.Web.Mvc.Tests.csproj", "{0B3F6B63-22ED-4A21-98F1-AD77CB87316C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{7B5E21CD-BC28-4D83-9C82-ECDCE05925AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B3F6B63-22ED-4A21-98F1-AD77CB87316C} = {7B5E21CD-BC28-4D83-9C82-ECDCE05925AA}
 	EndGlobalSection
 EndGlobal
