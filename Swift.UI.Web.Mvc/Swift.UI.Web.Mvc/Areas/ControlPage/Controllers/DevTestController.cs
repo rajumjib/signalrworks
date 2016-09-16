@@ -23,9 +23,9 @@ using LiveStock.Logic.Service;
 using LiveStock.Logic.Service.EntityFramework;
 using LiveStock.UI.Web.Mvc.Controllers;
 
-namespace LiveStock.UI.Web.Mvc.Areas.ControlPage.Controllers
+namespace Swift.UI.Web.Mvc.Areas.ControlPage.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public partial class DevTestController : BaseController
     {
         private IDevTestService service;

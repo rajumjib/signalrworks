@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      data-ng-app="angLiveStock">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Application</title>
+
+    @Styles.Render("~/styles/angular-ui-bootstrap")
+    @RenderSection("Styles", required: false)
+</head>
+
+<body>
+
+    <header id="header"
+            data-ng-controller="indexController">
+        <!--header-->
+        <div class="header-middle navbar navbar-default navbar-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-11 ">
+                        <div class="pull-left navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown"
+                                    uib-dropdown>
+                                    <a href=" #" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                                       uib-dropdown-toggle>
+                                        Pages <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu multi-level" role="menu">
+
+                                        <!-- addedextract:all:devTest -->
+                                        <li><a href='@Url.Action("Index", "DevTest", new { area = "ControlPage" })#/devTest'>DevTest</a></li>
+
+                                        <!-- endextract -->
+                                        <!-- appendextract:all -->
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="pull-right navbar-collapse collapse">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container body-container body-content">
+        @RenderBody()
+        <div ui-view ng-animate></div>
+        @RenderSection("SPAViews", required: false)
+    </div>
+
+    <footer id="footer">
+        <!--Footer-->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="text-center">Copyright &copy; @DateTime.Now.Year - <a href="#/about">Md. Jahirul Islam Bhuiyan</a>. All rights resurved</p>
+                </div>
+            </div>
+        </div>
+
+    </footer><!--/Footer-->
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    @Scripts.Render("~/scripts/angular-ui")
+    <script src="~/Scripts/angular-route.js"></script>
+    @Scripts.Render("~/scripts/angular-bootstrap")
+    @Scripts.Render("~/scripts/angular-resource")
+    @Scripts.Render("~/scripts/angular-animate")
+    <script src="~/Scripts/angular-signalr-hub.js"></script>
+
+    <script src="~/Apps/app.config.js"></script>
+    <script src="~/Apps/app.js"></script>
+    <script src="~/Apps/app.routes.js"></script>
+
+    <script src="~/Apps/Shared/commonLibrary.js"></script>
+    <script src="~/Apps/Helpers/cacheHelper.js"></script>
+    <script src="~/Apps/Components/Home/Controllers/homeController.js"></script>
+    <script src="~/Apps/Components/Home/Controllers/aboutController.js"></script>
+
+    <script src="~/Apps/Helpers/serviceHelper.js"></script>
+    <script src="~/Apps/Shared/logger.js"></script>
+    <script src="~/Apps/Shared/unitOfWork.init.js"></script>
+    <script src="~/Apps/Shared/unitOfWork.resourceApi.js"></script>
+
+    <script src="~/Apps/Shared/Directives/confirmModal.js"></script>
+    <script src="~/Apps/Shared/Directives/draggableDroppable.js"></script>
+    <script src="~/Apps/Shared/Filters/yesNo.js"></script>
+    <script src="~/Apps/Shared/Filters/activeInactive.js"></script>
+    <script src="~/Apps/Shared/Filters/inWords.js"></script>
+    <script src="~/Apps/Shared/Filters/monthName.js"></script>
+    <script src="~/Apps/Shared/Filters/ageDate.js"></script>
+
+    <script src="~/Apps/Components/Global/Services/bookmarkedService.js"></script>
+    <script src="~/Apps/Components/Global/Services/mostlyUsedService.js"></script>
+    <script src="~/Apps/Components/Global/Services/processFlowService.js"></script>
+    <script src="~/Apps/Components/Global/Services/recentlyService.js"></script>
+    <script src="~/Apps/Components/Global/Services/eventHistoryService.js"></script>
+    <script src="~/Apps/Components/Global/Services/services.js"></script>
+    <script src="~/Apps/Shared/unitOfWork.service.js"></script>
+
+
+    <!-- App Module, Route Configuration, Shared -->
+    <script src="~/Areas/ControlPage/Apps/app.js"></script>
+    <script src="~/Areas/ControlPage/Apps/app.routes.js"></script>
+
+    <script src="~/Areas/ControlPage/Apps/Shared/unitOfWorkInit.js"></script>
+    <script src="~/Areas/ControlPage/Apps/Shared/unitOfWorkResourceApi.js"></script>
+
+    <script src="~/Areas/ControlPage/Apps/Shared/Directives/modalDialog.js"></script>
+
+    <script src="~/Areas/ControlPage/Apps/Components/Global/Controllers/indexController.js"></script>
+
+    @RenderSection("Scripts", required: false)
+    
+    <!-- addedextract:services:devTest -->
+    <script src="~/Areas/ControlPage/Apps/Components/Pages/Services/devTestService.js"></script>
+
+    <!-- endextract -->
+    <!-- appendextract:services -->
+    <script src="~/Areas/ControlPage/Apps/Components/Pages/Services/services.js"></script>
+
+    <!-- addedextract:controllers:devTest -->
+    <script src="~/Areas/ControlPage/Apps/Components/Pages/Controllers/devTestController.js"></script>
+
+    <!-- endextract -->
+    <!-- appendextract:controllers -->
+    <script src="~/Areas/ControlPage/Apps/Components/Pages/Controllers/controllers.js"></script>
+
+</body>
+
+</html>

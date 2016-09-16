@@ -23,6 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                    <li><a href='@Url.Action("Index", "DevTest", new { area = "ControlPage" })#/devTest'>DevTest</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

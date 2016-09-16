@@ -235,6 +235,51 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Apps\app.config.js" />
+    <Content Include="Apps\app.js" />
+    <Content Include="Apps\app.routes.js" />
+    <Content Include="Apps\Components\Global\Services\bookmarkedService.js" />
+    <Content Include="Apps\Components\Global\Services\eventHistoryService.js" />
+    <Content Include="Apps\Components\Global\Services\mostlyUsedService.js" />
+    <Content Include="Apps\Components\Global\Services\processFlowService.js" />
+    <Content Include="Apps\Components\Global\Services\recentlyService.js" />
+    <Content Include="Apps\Components\Global\Services\services.js" />
+    <Content Include="Apps\Components\Global\Views\confirmModal.html" />
+    <Content Include="Apps\Components\Global\Views\Error.html" />
+    <Content Include="Apps\Components\Global\Views\termsConditionsModal.html" />
+    <Content Include="Apps\Components\Home\Controllers\aboutController.js" />
+    <Content Include="Apps\Components\Home\Controllers\homeController.js" />
+    <Content Include="Apps\Components\Home\Views\About.html" />
+    <Content Include="Apps\Components\Home\Views\About\1.jpg" />
+    <Content Include="Apps\Components\Home\Views\Home.html" />
+    <Content Include="Apps\Components\Home\Views\Landing.html" />
+    <Content Include="Apps\Helpers\cacheHelper.js" />
+    <Content Include="Apps\Helpers\serviceHelper.js" />
+    <Content Include="Apps\Shared\commonLibrary.js" />
+    <Content Include="Apps\Shared\Directives\confirmModal.js" />
+    <Content Include="Apps\Shared\Directives\draggableDroppable.js" />
+    <Content Include="Apps\Shared\Filters\activeInactive.js" />
+    <Content Include="Apps\Shared\Filters\ageDate.js" />
+    <Content Include="Apps\Shared\Filters\inWords.js" />
+    <Content Include="Apps\Shared\Filters\monthName.js" />
+    <Content Include="Apps\Shared\Filters\yesNo.js" />
+    <Content Include="Apps\Shared\logger.js" />
+    <Content Include="Apps\Shared\unitOfWork.init.js" />
+    <Content Include="Apps\Shared\unitOfWork.resourceApi.js" />
+    <Content Include="Apps\Shared\unitOfWork.service.js" />
+    <Content Include="Areas\ControlPage\Apps\app.js" />
+    <Content Include="Areas\ControlPage\Apps\app.routes.js" />
+    <Content Include="Areas\ControlPage\Apps\Components\Global\Controllers\indexController.js" />
+    <Content Include="Areas\ControlPage\Apps\Components\Pages\Controllers\controllers.js" />
+    <Content Include="Areas\ControlPage\Apps\Components\Pages\Controllers\devTestController.js" />
+    <Content Include="Areas\ControlPage\Apps\Components\Pages\Languages\devTestMsg.js" />
+    <Content Include="Areas\ControlPage\Apps\Components\Pages\Routes\devTestRoute.js" />
+    <Content Include="Areas\ControlPage\Apps\Components\Pages\Services\devTestService.js" />
+    <Content Include="Areas\ControlPage\Apps\Components\Pages\Services\services.js" />
+    <Content Include="Areas\ControlPage\Apps\Shared\Directives\modalDialog.js" />
+    <Content Include="Areas\ControlPage\Apps\Shared\unitOfWorkInit.js" />
+    <Content Include="Areas\ControlPage\Apps\Shared\unitOfWorkResourceApi.js" />
+    <Content Include="Areas\ControlPage\Apps\Shared\unitOfWorkService.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -1026,6 +1071,8 @@
     <Content Include="Areas\ControlPage\Views\DevTest\Details.cshtml" />
     <Content Include="Areas\ControlPage\Views\DevTest\Edit.cshtml" />
     <Content Include="Areas\ControlPage\Views\DevTest\Index.cshtml" />
+    <Content Include="Areas\ControlPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\ControlPage\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1076,10 +1123,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiControllers\" />
+    <Folder Include="Apps\Components\Global\Directives\" />
+    <Folder Include="Apps\Components\Home\Directives\" />
+    <Folder Include="Apps\Components\Home\Services\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ControlPage\MessageServers\Decorator\Services\" />
     <Folder Include="Areas\ControlPage\Scripts\" />
-    <Folder Include="Areas\ControlPage\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

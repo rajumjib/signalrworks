@@ -23,10 +23,10 @@ using LiveStock.Logic.Service;
 using LiveStock.Logic.Service.EntityFramework;
 //using LiveStock.UI.Web.Mvc.ApiControllers;
 
-namespace LiveStock.UI.Web.Mvc.Areas.ControlPage.ApiControllers
+namespace Swift.UI.Web.Mvc.Areas.ControlPage.ApiControllers
 {
 
-    [Authorize]
+    //[Authorize]
     public partial class DevTestsController : ApiController
     {
         //private SystemManagementContext db = new SystemManagementContext();
