@@ -19,6 +19,7 @@
             NoFutureDate: { maxDate: new Date() }
         };
         $scope.devTestFilter = {};
+	$scope.devTests = [];
 
         initialize();
 
@@ -47,7 +48,6 @@
                 case 'devTest.list':
                     $scope.predicate = 'id';
                     $scope.reverse = true;
-                    $scope.devTests = [];
                     //$scope.devTests = devTestService.GetDevTests();
                     devTestService.GetDevTests().$promise
                     .then(function (data) {
