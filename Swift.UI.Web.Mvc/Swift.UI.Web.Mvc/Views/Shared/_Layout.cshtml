@@ -1,14 +1,17 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      data-ng-app="angLiveStockManager">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Work Of Jahirul Islam</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/Site.css" />
+
+    @Styles.Render("~/styles/angular-ui-bootstrap")
+    @RenderSection("Styles", required: false)
 </head>
-<body>
+<body style="overflow-y:scroll">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,29 +20,72 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SignalR Works", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
-                    <li><a href='@Url.Action("Index", "DevTest", new { area = "ControlPage" })#/devTest'>DevTest</a></li>
+                    <li>
+                        <a href="@Url.Action("Index", "Home", new { area = "" })#/Home">
+                            Home
+                        </a>
+                    </li>
+                    <li><a href='@Url.Action("Index", "Home", new { area = "" })#/About'>About</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-container body-content" style="padding-top: 5px;">
         @RenderBody()
         @RenderSection("SPAViews", required: false)
+        <div data-ng-view ng-animate></div>
+
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Jahirul Islam</p>
         </footer>
+        <hr />
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    @Scripts.Render("~/scripts/angular-ui")
+    <script src="~/Scripts/angular-route.js"></script>
+    @Scripts.Render("~/scripts/angular-bootstrap")
+    @Scripts.Render("~/scripts/angular-resource")
+    @Scripts.Render("~/scripts/angular-animate")
+    <script src="~/Scripts/angular-signalr-hub.js"></script>
+
+    <script src="~/Apps/app.config.js"></script>
+    <script src="~/Apps/app.js"></script>
+    <script src="~/Apps/app.routes.js"></script>
+
+    <script src="~/Apps/Shared/commonLibrary.js"></script>
+    <script src="~/Apps/Helpers/cacheHelper.js"></script>
+    <script src="~/Apps/Components/Home/Controllers/homeController.js"></script>
+    <script src="~/Apps/Components/Home/Controllers/aboutController.js"></script>
+
+    <script src="~/Apps/Helpers/serviceHelper.js"></script>
+    <script src="~/Apps/Shared/logger.js"></script>
+    <script src="~/Apps/Shared/unitOfWork.init.js"></script>
+    <script src="~/Apps/Shared/unitOfWork.resourceApi.js"></script>
+
+    <script src="~/Apps/Shared/Directives/confirmModal.js"></script>
+    <script src="~/Apps/Shared/Directives/draggableDroppable.js"></script>
+    <script src="~/Apps/Shared/Filters/yesNo.js"></script>
+    <script src="~/Apps/Shared/Filters/activeInactive.js"></script>
+    <script src="~/Apps/Shared/Filters/inWords.js"></script>
+    <script src="~/Apps/Shared/Filters/monthName.js"></script>
+    <script src="~/Apps/Shared/Filters/ageDate.js"></script>
+
+    <script src="~/Apps/Components/Global/Services/bookmarkedService.js"></script>
+    <script src="~/Apps/Components/Global/Services/mostlyUsedService.js"></script>
+    <script src="~/Apps/Components/Global/Services/processFlowService.js"></script>
+    <script src="~/Apps/Components/Global/Services/recentlyService.js"></script>
+    <script src="~/Apps/Components/Global/Services/eventHistoryService.js"></script>
+    <script src="~/Apps/Components/Global/Services/services.js"></script>
+    <script src="~/Apps/Shared/unitOfWork.service.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

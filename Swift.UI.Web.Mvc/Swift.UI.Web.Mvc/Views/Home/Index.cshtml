@@ -1,7 +1,18 @@
-﻿@section SPAViews {
-    @Html.Partial("_Home")
+﻿@{
+    ViewBag.Title = "Home Page";
 }
-@section Scripts{
-    @Scripts.Render("~/bundles/knockout")
-    @Scripts.Render("~/bundles/app")
+
+<div class="row">
+    <div class="col-lg-12 alert-info">
+        <h3> <span class="glyphicon glyphicon-th"></span> List of Apps </h3>
+    </div>
+</div>
+<div id="viewList">
+
+</div>
+
+@section Styles {
+    <style>
+        
+    </style>
 }

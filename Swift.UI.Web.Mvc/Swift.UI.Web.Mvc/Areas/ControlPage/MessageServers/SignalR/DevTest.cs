@@ -8,17 +8,17 @@ namespace LiveStock.UI.Web.Mvc.Server
     {
         public void AddDevTest(int id, DevTest devTest)
         {
-            Clients.Others.add(id, devTest);
+            Clients.OthersInGroup("DevTest").add(id, devTest);
         }
 
         public void ModifyDevTest(int id, DevTest devTest)
         {
-            Clients.Others.modify(id, devTest);
+            Clients.OthersInGroup("DevTest").modify(id, devTest);
         }
 
         public void RemoveDevTest(int id)
         {
-            Clients.Others.remove(id);
+            Clients.OthersInGroup("DevTest").remove(id);
         }
     }
 }
